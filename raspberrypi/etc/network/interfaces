@@ -1,0 +1,26 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+allow-hotplug eth0
+iface eth0 inet manual
+
+auto wlan0
+iface wlan0 inet static
+  address 192.168.10.1
+  netmask 255.255.255.0
+  # gateway 10.42.0.17
+  # pre-up iptables-restore < /etc/iptables.ipv4.nat
+  up /etc/init.d/hostapd start
+  post-down /etc/init.d/hostapd stop
+
+#auto wlan0
+#allow-hotplug wlan0
+#iface wlan0 inet manual
+#wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+#auto wlan1
+#allow-hotplug wlan1
+#iface wlan1 inet manual
+#wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+

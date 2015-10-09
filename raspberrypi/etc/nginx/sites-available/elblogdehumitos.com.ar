@@ -1,0 +1,26 @@
+server {
+    server_name     www.elblogdehumitos.com.ar blog.mkaufmann.com.ar humitos.com.ar www.humitos.com.ar;
+    return 301      http://elblogdehumitos.com.ar$request_uri;
+}
+
+server {
+    server_name     elblogdehumitos.com.ar;
+
+    # translate 'categories' to 'etiquetas'
+    rewrite         ^/categories/(.*) http://elblogdehumitos.com.ar/etiquetas/$1 redirect;
+
+    access_log      /var/log/nginx/elblogdehumitos.com.ar-access.log;
+    error_log       /var/log/nginx/elblogdehumitos.com.ar-error.log;
+
+    expires 30d;
+
+    location /assets {
+        root /home/pi/apps/elblogdehumitos.com.ar;
+    }
+
+    location / {
+        root /home/pi/apps/elblogdehumitos.com.ar;
+        index index.html;
+    }
+}
+

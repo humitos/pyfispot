@@ -1,0 +1,70 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          uwsgi
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the uwsgi app server
+# Description:       starts uwsgi app server using start-stop-daemon
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/home/pi/uwsgi/uwsgi
+
+OWNER=www-data
+NAME=uwsgi
+DESC=uwsgi
+
+test -x $DAEMON || exit 0
+
+# Include uwsgi defaults if available
+if [ -f /etc/default/uwsgi ] ; then
+        . /etc/default/uwsgi
+fi
+
+set -e
+
+DAEMON_OPTS="-s 127.0.0.1:3031 -d /var/log/uwsgi/uwsgi.log --pidfile /var/run/uwsgi/uwsgi.pid --workers 1 --enable-threads --plugin /home/pi/uwsgi/python27_plugin.so --pp /home/pi/apps/pyfispot --module main:app -H /home/pi/.virtualenvs/pyfispot/"
+
+case "$1" in
+  start)
+        echo -n "Starting $DESC: "
+        mkdir /var/run/uwsgi/
+        chown www-data:www-data /var/run/uwsgi/
+        start-stop-daemon --start --chuid $OWNER:$OWNER --user $OWNER \
+                --exec $DAEMON -- $DAEMON_OPTS
+        echo "$NAME."
+        ;;
+  stop)
+        echo -n "Stopping $DESC: "
+        start-stop-daemon --signal 3 --user $OWNER --retry 2 --stop \
+                --exec $DAEMON
+        echo "$NAME."
+        ;;
+  reload)
+        killall -1 $DAEMON
+        ;;
+  force-reload)
+        killall -15 $DAEMON
+       ;;
+  restart)
+        echo -n "Restarting $DESC: "
+        start-stop-daemon --signal 3 --user $OWNER --retry 2 --stop \
+                --exec $DAEMON
+        sleep 1
+        start-stop-daemon --user $OWNER --start --chuid $OWNER:$OWNER \
+               --exec $DAEMON -- $DAEMON_OPTS
+        echo "$NAME."
+        ;;
+  status)  
+        killall -10 $DAEMON
+        ;;
+      *)  
+            N=/etc/init.d/$NAME
+            echo "Usage: $N {start|stop|restart|reload|force-reload|status}" >&2
+            exit 1
+            ;;
+    esac
+    exit 0

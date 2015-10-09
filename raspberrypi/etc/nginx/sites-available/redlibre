@@ -1,0 +1,72 @@
+server {
+    server_name     redlibre;
+
+    access_log      /var/log/nginx/redlibre-access.log;
+    error_log       /var/log/nginx/redlibre-error.log;
+
+
+    location / {
+        root /usr/share/nginx/www;
+	index index.html index.html;
+    }
+}
+
+
+# server {
+#     server_name     wpad.redlibre;
+# 
+#     access_log      /var/log/nginx/wpad.redlibre-access.log;
+#     error_log       /var/log/nginx/wpad.redlibre-error.log;
+# 
+#     location / {
+#         root /usr/share/nginx/www;
+#     }
+# }
+
+
+server {
+    server_name    www.cdpedia.redlibre cdpedia.redlibre;
+
+    access_log      /var/log/nginx/cdpedia.redlibre-access.log;
+    error_log       /var/log/nginx/cdpedia.redlibre-error.log;
+
+    location / {
+          proxy_pass    http://127.0.0.1:8888;
+    }
+}
+
+server {
+
+    server_name    chat.redlibre;
+    
+    access_log      /var/log/nginx/chat.redlibre-access.log;
+    error_log       /var/log/nginx/chat.redlibre-error.log;
+
+    location / {
+        root /home/pi/apps/candy;
+        index index.html index.htm;
+    }
+
+    location /http-bind {
+        proxy_pass  http://127.0.0.1:5280/http-bind;
+        proxy_set_header Host $host;
+        proxy_buffering off;
+        tcp_nodelay on;
+    }
+}
+
+server {
+    listen          80 default_server;
+    server_name     www.portal.redlibre portal.redlibre;
+
+    access_log      /var/log/nginx/pyfispot-access.log;
+    error_log       /var/log/nginx/pyfispot-error.log;
+
+    location / { try_files $uri @pyfispot; }
+
+    location @pyfispot {
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+}
+
