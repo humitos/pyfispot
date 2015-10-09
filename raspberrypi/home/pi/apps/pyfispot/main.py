@@ -1,3 +1,5 @@
+#/usr/bin/env python2
+
 import os
 import re
 import time
@@ -17,8 +19,6 @@ IPTABLES = '/sbin/iptables'
 RMTRACK = '/usr/bin/rmtrack'
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
 MAC_REGEX = re.compile(r'..:..:..:..:..:..')
-DOMAIN_REGEX = re.compile(r'(www\.)?{server_name}\.{domain_name}'.format(
-    server_name=SERVER_NAME, domain_name=DOMAIN_NAME))
 
 
 app = Flask(__name__)
@@ -44,7 +44,11 @@ def setup_logging(verbose):
 def index():
     # Check if we've been redirected by firewall to here.
     # If so redirect to registration address
-    if DOMAIN_REGEX.match(request.host):
+    logger.debug('Comming from: %s', request.host)
+    pyfispot = '{server_name}.{domain_name}'.format(
+        server_name=SERVER_NAME,
+        domain_name=DOMAIN_NAME)
+    if pyfispot not in request.host:
         logger.debug('Trying to access: %s', request.base_url)
         logger.debug('Redirecting...')
         url = 'http://{server_name}.{domain_name}'.format(
@@ -78,7 +82,7 @@ def index():
             logger.debug('Redirecting to the original page requested: %s', url)
 
             if url is not None:
-                return redirect(url)
+                return redirect(url, code=303)
             return redirect('http://argentinaenpython.com.ar/')
         else:
             return 'You are not authorized to browse the web'
@@ -108,7 +112,7 @@ def enable_address(mac):
     logger.debug('Sleeping 1 second...')
     time.sleep(1)
 
-# Initializing, also por uWSGI
+# Initializing, also by uWSGI
 setup_logging(verbose=True)
 logger.debug('Initializing the app..')
 
