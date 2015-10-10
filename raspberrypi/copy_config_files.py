@@ -20,5 +20,5 @@ for root, dirnames, filenames in os.walk('etc'):
             shutil.move(root_path, root_path + '.bak')
         except IOError as e:
             print('There was an error backuping this file')
-            print('Exception: {}'.format(e)
+            print('Exception: {}'.format(e))
         shutil.copy(relative_path, root_path)
