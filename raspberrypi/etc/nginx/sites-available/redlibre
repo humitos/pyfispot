@@ -64,6 +64,10 @@ server {
 
     location / { try_files $uri @pyfispot; }
 
+    location /static {
+        root /home/pi/apps/pyfispot/raspberrypi/home/pi/apps/pyfispot;
+    }
+
     location @pyfispot {
         include uwsgi_params;
         uwsgi_pass 127.0.0.1:3031;
