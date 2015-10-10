@@ -76,6 +76,8 @@ $IPTABLES -t filter -A INPUT -p tcp --source 127.0.0.1 --destination 127.0.0.1 -
 # (these packages come with the 99 mark so we need special rules)
 $IPTABLES -t filter -A INPUT -p tcp --dport 80 -j ACCEPT  # HTTP
 $IPTABLES -t filter -A INPUT -p tcp --sport 80 -j ACCEPT  # HTTP
+$IPTABLES -t filter -A INPUT -p tcp --dport 443 -j ACCEPT  # HTTPS
+$IPTABLES -t filter -A INPUT -p tcp --sport 443 -j ACCEPT  # HTTPS
 $IPTABLES -t filter -A INPUT -p udp --dport 67 -j ACCEPT  # DHCP
 
 $IPTABLES -t filter -A INPUT -p udp --dport 53 -j ACCEPT  # DNS (outcoming)
