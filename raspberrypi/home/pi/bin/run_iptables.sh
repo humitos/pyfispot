@@ -2,6 +2,12 @@
 # Strongly based on:
 #  http://www.andybev.com/index.php/Using_iptables_and_PHP_to_create_a_captive_portal
 
+# sudo ./run_iptables wlan1 wlan0
+# sudo ./run_iptables eth0 wlan0
+
+IFACE_INTERNET=$1
+IFACE_HOSTAPD=$2
+
 IPTABLES=/sbin/iptables
 
 # Used to DROP n' log packages in /var/log/messages
@@ -56,7 +62,7 @@ $IPTABLES -t filter -A FORWARD -p icmp --icmp-type echo-request -j ACCEPT
 # Now that we've got to the forward filter, drop all packets
 # marked 99 - these are unknown users. We can't drop them earlier
 # as there's no filter table.
-$IPTABLES -t filter -A FORWARD -i wlan0 -m mark --mark 99 -j logdrop
+$IPTABLES -t filter -A FORWARD -i $IFACE_HOSTAPD -m mark --mark 99 -j DROP
 
 # Allow my own PC to connect directly to the RaspberryPi.
 $IPTABLES -t filter -A INPUT -m mac --mac-source 00:e0:4c:53:44:58 -j ACCEPT  # eth0 (usb adaptor)
@@ -79,12 +85,11 @@ $IPTABLES -t filter -A INPUT -p udp --sport 53 -j ACCEPT  # DNS (incoming)
 $IPTABLES -t filter -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
 $IPTABLES -t filter -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
 
-# $IPTABLES -t filter -A INPUT -m mark ! --mark 99 -j logaccept
 $IPTABLES -t filter -A INPUT -m mark --mark 99 -j DROP
 
 # Enable Internet connection sharing
 echo "1" > /proc/sys/net/ipv4/ip_forward
-$IPTABLES -t filter -A FORWARD -i eth0 -o wlan0 -m state --state ESTABLISHED,RELATED -j ACCEPT
-$IPTABLES -t filter -A FORWARD -i wlan0 -o eth0 -j ACCEPT
-$IPTABLES -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+$IPTABLES -t filter -A FORWARD -i $IFACE_INTERNET -o $IFACE_HOSTAPD -m state --state ESTABLISHED,RELATED -j ACCEPT
+$IPTABLES -t filter -A FORWARD -i $IFACE_HOSTAPD -o $IFACE_INTERNET -j ACCEPT
+$IPTABLES -t nat -A POSTROUTING -o $IFACE_INTERNET -j MASQUERADE
 
