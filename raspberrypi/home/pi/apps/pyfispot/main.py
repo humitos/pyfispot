@@ -25,19 +25,22 @@ app = Flask(__name__)
 logger = logging.getLogger('pyfispot')
 
 
-def setup_logging(verbose):
+def setup_logging(logtofile, verbose):
     logfile = os.path.join(DIRNAME, 'pyfispot.log')
-    handler = RotatingFileHandler(logfile, maxBytes=1e6, backupCount=10)
-    logger.addHandler(handler)
     formatter = logging.Formatter("%(asctime)s  %(name)-10s  "
                                   "%(levelname)-8s %(message)s")
-    handler.setFormatter(formatter)
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
+
+    if logtofile:
+        handler = RotatingFileHandler(logfile, maxBytes=1e6, backupCount=10)
+        logger.addHandler(handler)
+        handler.setFormatter(formatter)
 
     if verbose:
         handler = logging.StreamHandler()
         handler.setFormatter(formatter)
         logger.addHandler(handler)
+        logger.setLevel(logging.DEBUG)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -112,9 +115,10 @@ def enable_address(mac):
     logger.debug('Sleeping 1 second...')
     time.sleep(1)
 
-# Initializing, also by uWSGI
-setup_logging(verbose=True)
-logger.debug('Initializing the app..')
-
 if __name__ == '__main__':
+    setup_logging(logtofile=True, verbose=True)
     app.run('0.0.0.0', debug=True)
+else:
+    # Initializing in uWSGI
+    setup_logging(logtofile=False, verbose=True)
+    logger.debug('Initializing the app..')
