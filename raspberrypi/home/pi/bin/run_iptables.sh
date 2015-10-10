@@ -11,14 +11,14 @@ IFACE_HOSTAPD=$2
 IPTABLES=/sbin/iptables
 
 # Used to DROP n' log packages in /var/log/messages
-# $IPTABLES -N logdrop
-# $IPTABLES -A logdrop -m limit --limit 5/m --limit-burst 10 -j LOG
-# $IPTABLES -A logdrop -j DROP
+$IPTABLES -N logdrop
+$IPTABLES -A logdrop -m limit --limit 5/m --limit-burst 10 -j LOG
+$IPTABLES -A logdrop -j DROP
 
 # Used to ACCEPT n' log packages in /var/log/messages
-# $IPTABLES -N logaccept
-# $IPTABLES -A logaccept -m limit --limit 5/m --limit-burst 10 -j LOG
-# $IPTABLES -A logaccept -j ACCEPT
+$IPTABLES -N logaccept
+$IPTABLES -A logaccept -m limit --limit 5/m --limit-burst 10 -j LOG
+$IPTABLES -A logaccept -j ACCEPT
 
 # Useful to log the traffic and be able to debug
 # $IPTABLES -t raw -A PREROUTING -p tcp --dport 80 -j TRACE
