@@ -1,0 +1,11 @@
+ctrl_interface=/var/run/wpa_supplicant
+ctrl_interface_group=20
+update_config=1
+
+network={
+    ssid="GATOBLANCO"
+    psk="<your-wifi-password-here>"
+    proto=WPA2
+    key_mgmt=WPA-PSK
+    pairwise=CCMP
+}
