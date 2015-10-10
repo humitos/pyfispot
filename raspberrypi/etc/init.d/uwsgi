@@ -26,12 +26,12 @@ fi
 
 set -e
 
-DAEMON_OPTS="-s 127.0.0.1:3031 -d /var/log/uwsgi/uwsgi.log --pidfile /var/run/uwsgi/uwsgi.pid --workers 1 --enable-threads --plugin /home/pi/uwsgi/python27_plugin.so --pp /home/pi/apps/pyfispot --module main:app -H /home/pi/.virtualenvs/pyfispot/"
+DAEMON_OPTS="-s 127.0.0.1:3031 -d /var/log/uwsgi/uwsgi.log --pidfile /var/run/uwsgi/uwsgi.pid --workers 1 --enable-threads --plugin /home/pi/uwsgi/python27_plugin.so --pp /home/pi/apps/pyfispot/raspberrypi/home/pi/apps/pyfispot --module main:app -H /home/pi/.virtualenvs/pyfispot/"
 
 case "$1" in
   start)
         echo -n "Starting $DESC: "
-        mkdir /var/run/uwsgi/
+        mkdir -p /var/run/uwsgi/
         chown www-data:www-data /var/run/uwsgi/
         start-stop-daemon --start --chuid $OWNER:$OWNER --user $OWNER \
                 --exec $DAEMON -- $DAEMON_OPTS

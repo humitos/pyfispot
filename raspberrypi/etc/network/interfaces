@@ -8,10 +8,12 @@ iface eth0 inet manual
 auto wlan0
 iface wlan0 inet static
   address 192.168.10.1
+  network 192.168.10.0
+  broadcast 192.168.1.255
   netmask 255.255.255.0
   # gateway 10.42.0.17
   # pre-up iptables-restore < /etc/iptables.ipv4.nat
-  up /etc/init.d/hostapd start
+  post-up /etc/init.d/hostapd start
   post-down /etc/init.d/hostapd stop
 
 #auto wlan0
