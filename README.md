@@ -12,7 +12,7 @@ definitive guide.
 
 # How it works?
 
-1. The user get connected to the WiFi network
+1. The user gets connected to the WiFi network
  * if he is connected via a Smartphone, a notification is shown in his
    phone
 1. The user enters a webpage on the browser
@@ -49,7 +49,7 @@ This was ment to be used in courses and other events organized by the
 project [Argentina en Python](http://argentinaenpython.com.ar/), so
 there are some other services offered by the RaspberryPi server.
 
-* TileStache ([OpenStreetMap](http://osm.org/) Tile Server)
+* [TileStache](https://github.com/humitos/pyfispot/blob/master/docs/tilestache.md) ([OpenStreetMap](http://osm.org/) Tile Server)
   * memcache (optional)
 * Offline Websites
   * elblogdehumitos.com.ar
