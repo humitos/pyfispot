@@ -34,12 +34,10 @@ there are some other services offered by the RaspberryPi server.
 
 * TileStache ([OpenStreetMap](http://osm.org/) Tile Server)
   * memcache (optional)
-
 * Offline Websites
   * elblogdehumitos.com.ar
   * argentinaenpython.com.ar
   * tutorial.djangogirls.org
-
 * XMPP server
   * [prosody](http://prosody.im/)
   * [Candy](candy-chat.github.io/candy/)
