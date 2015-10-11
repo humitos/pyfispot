@@ -2,9 +2,9 @@
 
 PyFi Spot is a HotSpot
 ([Captive Portal](https://en.wikipedia.org/wiki/Captive_portal/)) to be
-ran into a RaspberryPi.
+ran in a RaspberryPi.
 
-There are a lot of information about Captive Portals on the Internet
+There is a lot of information about Captive Portals on the Internet
 but none of them is complete. That's why I wrote PyFi Spot -the
 definitive guide.
 
@@ -15,18 +15,18 @@ definitive guide.
 1. The user gets connected to the WiFi network
  * if he is connected via a Smartphone, a notification is shown in his
    phone
-1. The user enters a webpage on the browser
+1. The user enters a URL in the browser
 1. He is redirected to our portal
  * this is done by using some *iptables rules*
 1. Our portal is shown
  * nginx + uwsgi + python 2.7 + flask
 1. The user logs in into the portal
-1. A new *iptable rule* is executed to allow him
+1. A new *iptable rule* is executed to allow him use the connection
 
 # Requirements
 
 * [RaspberryPi](http://raspberrypi.org/)
-* Dondle WiFi
+* Dongle WiFi
   (e.g. [TL-WN722G](http://www.tp-link.com/en/products/details/cat-11_TL-WN722N.html)
   or
   [TL-WN322N](http://www.tp-link.com/ve/products/details/?model=TL-WN322G))
@@ -41,11 +41,11 @@ definitive guide.
   * Flask
   * conntrack
 
-*NOTE:* click on each software to read the docs.
+*NOTE:* click on each link to read their docs.
 
 # Optional
 
-This was ment to be used in courses and other events organized by the
+This was meant to be used in courses and other events organized by the
 project [Argentina en Python](http://argentinaenpython.com.ar/), so
 there are some other services offered by the RaspberryPi server.
 
@@ -57,7 +57,7 @@ there are some other services offered by the RaspberryPi server.
   * tutorial.djangogirls.org
 * XMPP server
   * [prosody](http://prosody.im/)
-  * [Candy](candy-chat.github.io/candy/)
+  * [Candy](http://candy-chat.github.io/candy/)
 * devpi-server
 
 # References
