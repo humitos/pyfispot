@@ -53,6 +53,8 @@ python uwsgiconfig.py --build core
 python uwsgiconfig.py --plugin plugins/python core python27
 ```
 
+### Files needed
+
 We also need an script to be ran at startup in
 [/etc/init.d/uwsgi](https://github.com/humitos/pyfispot/blob/master/raspberrypi/etc/init.d/uwsgi).
 

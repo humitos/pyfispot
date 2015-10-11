@@ -4,11 +4,24 @@ PyFi Spot is a HotSpot
 ([Captive Portal](https://en.wikipedia.org/wiki/Captive_portal/)) to be
 ran into a RaspberryPi.
 
-There a lot of information about Captive Portals on the Internet but
-none of them is complete. That's why I wrote PyFi Spot -the definitive
-guide.
+There are a lot of information about Captive Portals on the Internet
+but none of them is complete. That's why I wrote PyFi Spot -the
+definitive guide.
 
 ![PyFi Spot](https://raw.githubusercontent.com/humitos/pyfispot/master/pyfispot_logo.png)
+
+# How it works?
+
+1. The user get connected to the WiFi network
+ * if he is connected via a Smartphone, a notification is shown in his
+   phone
+1. The user enters a webpage on the browser
+1. He is redirected to our portal
+ * this is done by using some *iptables rules*
+1. Our portal is shown
+ * nginx + uwsgi + python 2.7 + flask
+1. The user logs in into the portal
+1. A new *iptable rule* is executed to allow him
 
 # Requirements
 
