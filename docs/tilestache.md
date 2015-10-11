@@ -9,7 +9,7 @@
 sudo apt-get install libjpeg-dev
 ```
 
-* Memcached
+* Memcached (optional)
 ```
 sudo apt-get install memcached
 ```

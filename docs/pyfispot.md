@@ -70,8 +70,31 @@ sudo update-rc.d uwsgi enable
 cd pyfispot
 virtualenv venv
 . venv/bin/activate
+```
+
+## PyFi Spot
+
+Once the virtualenv is activated, we need to install Flask to be able
+to run PyFiSpot:
+
+```
 pip install flask==0.10.1
 ```
+
+## conntrack
+
+* Website: http://conntrack-tools.netfilter.org/
+
+```
+sudo apt-get install conntrack
+```
+
+### Files needed
+
+We borrowed a simple script to remove some blocked connection when the
+user is not logged in yet.
+
+* [/usr/bin/rmtrack](https://github.com/humitos/pyfispot/blob/master/raspberrypi/usr/bin/rmtrack)
 
 # Testing
 
