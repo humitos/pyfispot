@@ -26,6 +26,8 @@ guide.
   * Python 2.7
   * Flask
 
+*NOTE:* click on each software to read the docs.
+
 # Optional
 
 This was ment to be used in courses and other events organized by the
