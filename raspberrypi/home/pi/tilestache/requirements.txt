@@ -1,0 +1,2 @@
+TileStache==1.50.1
+python-memcached==1.57
