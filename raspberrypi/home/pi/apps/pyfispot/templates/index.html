@@ -1,46 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js" >
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/static/favicon.ico">
-
-    <title>Iniciar sesión en "Red Libre"</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <!-- <link href="signin.css" rel="stylesheet"> -->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<![endif]-->
+    <title>Red Libre</title>
+    <!-- BOOTSTRAP CORE CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <!-- ION ICONS STYLES -->
+    <link href="/static/css/ionicons.css" rel="stylesheet" />
+    <!-- FONT AWESOME ICONS STYLES -->
+    <link href="/static/css/font-awesome.css" rel="stylesheet" />
+    <!-- FANCYBOX POPUP STYLES -->
+    <link href="/static/js/source/jquery.fancybox.css" rel="stylesheet" />
+    <!-- STYLES FOR VIEWPORT ANIMATION -->
+    <link href="/static/css/animations.min.css" rel="stylesheet" />
+    <!-- CUSTOM CSS -->
+    <link href="/static/css/style-green.css" rel="stylesheet" />
+    <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="/static/js/html5shiv.min.js"></script>
-      <script src="/static/js/respond.min.js"></script>
-    <![endif]-->
+	<script src="/static/js/html5shiv.js"></script>
+	<script src="/static/js/respond.min.js"></script>
+	<![endif]-->
   </head>
+  <body data-spy="scroll" data-target="#menu-section">
+    <!--MENU SECTION START-->
+    <div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section" >
+      <div class="container">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">
+	    Red Libre
+	  </a>
+	</div>
+	<div class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="#home">INICIO</a></li>
+	    <li><a href="#services">SERVICIOS</a></li>
+	    <li><a href="#team">EL EQUIPO</a></li>
+	    <li><a href="#login">INICIAR SESION</a></li>
+	  </ul>
+	</div>
+	
+      </div>
+    </div>
+    <!--MENU SECTION END-->
 
-  <body>
+    <!--HOME SECTION START-->
+    <div id="home" >
+      <div class="container">
+	<div class="row">
+	  <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+	    <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up">
+	      <div class="carousel-inner">
+		<div class="item active">
+		  <h3>
+		    Bienvenido a la "Red Libre"
+		  </h3>
+		  <p>
+		    La "Red Libre" es una red WiFi gratuita y viajera
+		    que ofrece diferentes servicios a sus
+		    usuarios. Sin embargo, no necesariamente quiere
+		    decir que cuente con una conexión a Internet; esto
+		    dependerá de la ubicación en la que se encuentre.
+		  </p>
+		  <p>
+		    En la "Red Libre" podrás encontrar mapas para tu
+		    Smartphone, blogs, libros en formato .epub y .pdf,
+		    tutoriales de programación, una pequeña Wikipedia
+		    y muchas cosas más. ¡No dejes de navegarla!
+		</div>		
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="row animate-in" data-anim-type="fade-in-up">
+	  <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 scroll-me">
+	    <p>
+	      ¡Muchas gracias por conectarte y no dudes en ponerte en
+	      contacto con nosotros!
+	    </p>
+	    <a href="#services" class=" btn button-custom btn-custom-two">Ver servicios </a>
+	  </div>
+	</div>
+      </div>
+      
+    </div>
+    <!--HOME SECTION END-->
 
-    <div class="container">
+    <section id="services">
+      <div class="container">
+	<div class="row text-center header animate-in" data-anim-type="fade-in-up">
+	  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	    <h3>Servicios de la "Red Libre"</h3>
+	    <hr/>
+	  </div>
+	</div>
+	<div class="row text-center animate-in" data-anim-type="fade-in-up" id="services-div">
+	  
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html">
+	    <div class="work-wrapper">
+	      
+	      <a class="fancybox-media" title="Image Title Goes Here" href="/static/img/portfolio/1.jpg">
+		
+		<img src="/static/img/portfolio/1.jpg" class="img-responsive img-rounded" alt="" />
+	      </a>
+	      
+	      <h4>Morbi mollis lectus et ipsum</h4>
+	    </div>
+	  </div>
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html css">
+	    <div class="work-wrapper">
+	      
+	      <a class="fancybox-media" title="Image Title Goes Here" href="/static/img/portfolio/2.jpg">
+		
+		<img src="/static/img/portfolio/2.jpg" class="img-responsive img-rounded" alt="" />
+	      </a>
+	      
+	      <h4>Morbi mollis lectus et ipsum</h4>
+	    </div>
+	  </div>
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 code script">
+	    <div class="work-wrapper">
+	      
+	      <a class="fancybox-media" title="Image Title Goes Here" href="/static/img/portfolio/3.jpg">
+		
+		<img src="/static/img/portfolio/3.jpg" class="img-responsive img-rounded" alt="" />
+	      </a>
+	      
+	      <h4>Morbi mollis lectus et ipsum</h4>
+	    </div>
+	  </div>
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html script">
+	    <div class="work-wrapper">
+	      
+	      <a class="fancybox-media" title="Image Title Goes Here" href="/static/img/portfolio/4.jpg">
+		
+		<img src="/static/img/portfolio/4.jpg" class="img-responsive img-rounded" alt="" />
+	      </a>
+	      
+	      <h4>Morbi mollis lectus et ipsum</h4>
+	    </div>
+	  </div>
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html code">
+	    <div class="work-wrapper">
+	      
+	      <a class="fancybox-media" title="Image Title Goes Here" href="/static/img/portfolio/5.jpg">
+		
+		<img src="/static/img/portfolio/5.jpg" class="img-responsive img-rounded" alt="" />
+	      </a>
+	      
+	      <h4>Morbi mollis lectus et ipsum</h4>
+	    </div>
+	  </div>
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 script">
+	    <div class="work-wrapper">
+	      
+	      <a class="fancybox-media" title="Image Title Goes Here" href="/static/img/portfolio/6.jpg">
+		
+		<img src="/static/img/portfolio/6.jpg" class="img-responsive img-rounded" alt="" />
+	      </a>
+	      
+	      <h4>Morbi mollis lectus et ipsum</h4>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </section>
+    <!--WORK SECTION END-->
 
-      <form method="POST" class="form-signin">
-        <h2 class="form-signin-heading">Iniciar sesión</h2>
-	<input type="hidden" name="giveme-internet" value="now">
-        <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+    <!--TEAM SECTION START-->
+    <section id="team">
+      <div class="container">
+	<div class="row text-center header animate-in" data-anim-type="fade-in-up">
+	  <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+	    <h3>El Equipo</h3>
+	    <hr />
+	  </div>
+	</div>
+	<div class="row animate-in" data-anim-type="fade-in-up">
+	  <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+	    <div class="team-wrapper">
+	      <div class="team-inner" style="background-image: url('/static/img/team/manuel-kaufmann.png')" >
+		<a href="https://twitter.com/argenpython" target="_blank" > <i class="fa fa-twitter" ></i></a>
+	      </div>
+	      <div class="description">
+		<h3>Manuel Kaufmann</h3>
+		<h5> <strong> Argentina en Python </strong></h5>
+		<p>
+		  Conductor inquieto y quisquilloso con las rutas, GPS
+		  y mapas. Programador de computadoras y miembro de la
+		  comunidad de Python Argentina desde el
+		  2006. Malabarista y medio monociclista. Docente
+		  frustrado y en recuperación activa. Es humitos.
+		</p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+	    <div class="team-wrapper">
+	      <div class="team-inner" style="background-image: url('/static/img/team/el-errante.png')" >
+		<a href="#" target="_blank" > <i class="fa fa-twitter" ></i></a>
+	      </div>
+	      <div class="description">
+		<h3>El Errante</h3>
+		<h5> <strong> Valentía al 100%  </strong></h5>
+		<p>
+		  Es la estrella del proyecto. Desde el inicio ha
+		  cedido entregar un asiento para poder montar una
+		  cama de 1 plaza en él. Ha empujado más de 30.000 Km
+		  en ruta, lluvia, barro, montañas y se ha bancado las
+		  situaciones más críticas del viaje. Sin embargo,
+		  nunca nos dejó a pie.
+		</p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+	    <div class="team-wrapper">
+	      <div class="team-inner" style="background-image: url('/static/img/team/johanna-sanchez.png')" >
+		<a href="https://twitter.com/ellaquimica" target="_blank" > <i class="fa fa-twitter" ></i></a>
+	      </div>
+	      <div class="description">
+		<h3>Johanna Sanchez</h3>
+		<h5> <strong> Química & Nómada </strong></h5>
+		<p>
+		  Co-piloto infaltable. Química apasionada e
+		  inquieta. Aprendiz de programación y científica en
+		  transición. Enamorada de la comunidad Python
+		  Argentina. Motivadora de científicos anticuados y
+		  niños en edad de reproducción neuronal mediante el
+		  proyecto Química & Nómada.
+		</p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </section>
+    <!--TEAM SECTION END-->
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Conectar</button>
-      </form>
-
-    </div> <!-- /container -->
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+    <!--CONTACT SECTION START-->
+    <section id="login">
+      <div class="container">
+	<div class="row text-center header animate-in" data-anim-type="fade-in-up">
+	  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	    
+	    <h3>Iniciar sesión en "Red Libre" </h3>
+	    <hr />
+	    
+	  </div>
+	</div>
+	
+	<div class="row animate-in" data-anim-type="fade-in-up">
+	  
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+	    <div class="contact-wrapper">
+	      <h3>Información</h3>
+	      <p>
+		Ingresando tu email y presionando en el botón
+		"Conectar" podrás disfrutar de todos los servicios de
+		la "Red Libre" de forma gratuita.
+	      </p>
+	    </div>
+	    
+	  </div>
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+	    <div class="contact-wrapper">
+	      <h3>Iniciar Sesión</h3>
+	      <form method="POST" class="form-signin">
+		<input type="hidden" name="giveme-internet" value="now">
+		<label for="name" class="sr-only">Email</label>
+		<input type="text" id="name" class="form-control" placeholder="Nombre" required>
+		<br/ >
+		<label for="email" class="sr-only">Email</label>
+		<input type="email" id="email" class="form-control" placeholder="Email" required>
+		<br/ >
+		<button class="btn button-custom btn-custom-two" type="submit">Conectar</button>
+	      </form>
+	      
+	      <div class="footer-div" >
+		&copy; 2015 Red Libre | <a href="http://www.designbootstrap.com/" target="_blank" >by DesignBootstrp</a>
+	      </div>
+	    </div>
+	    
+	  </div>
+	  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+	    <div class="contact-wrapper">
+	      <h3>Contacto</h3>
+	      <p>Email: argentinaenpython@openmailbox.org</p>
+	      <p>Twitter: @argenpython</p>
+	    </div>
+	    
+	  </div>
+	  
+	</div>
+	
+	
+      </div>
+    </section>
+    <!--CONTACT SECTION END-->
+    
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME -->
+    <!-- CORE JQUERY -->
+    <script src="/static/js/jquery-1.11.1.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/static/js/bootstrap.js"></script>
+    <!-- EASING SCROLL SCRIPTS PLUGIN -->
+    <script src="/static/js/vegas/jquery.vegas.min.js"></script>
+    <!-- VEGAS SLIDESHOW SCRIPTS -->
+    <script src="/static/js/jquery.easing.min.js"></script>
+    <!-- FANCYBOX PLUGIN -->
+    <script src="/static/js/source/jquery.fancybox.js"></script>
+    <!-- ISOTOPE SCRIPTS -->
+    <script src="/static/js/jquery.isotope.js"></script>
+    <!-- VIEWPORT ANIMATION SCRIPTS   -->
+    <script src="/static/js/appear.min.js"></script>
+    <script src="/static/js/animations.min.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/static/js/custom.js"></script>
   </body>
+  
 </html>
