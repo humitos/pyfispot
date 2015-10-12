@@ -23,6 +23,8 @@ definitive guide.
 1. The user logs in into the portal
 1. A new *iptable rule* is executed to allow him use the connection
 
+![Homepage](https://raw.githubusercontent.com/humitos/pyfispot/master/docs/images/homepage.png)
+
 # Requirements
 
 * [RaspberryPi](http://raspberrypi.org/)
