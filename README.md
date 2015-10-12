@@ -1,7 +1,7 @@
 # PyFi Spot
 
 PyFi Spot is a HotSpot
-([Captive Portal](https://en.wikipedia.org/wiki/Captive_portal/)) to be
+([Captive Portal](https://en.wikipedia.org/wiki/Captive_portal)) to be
 ran in a RaspberryPi.
 
 There is a lot of information about Captive Portals on the Internet
