@@ -39,6 +39,8 @@ pip install tilestache python-memcached
 ```
 /home/pi/uwsgi/uwsgi \
  --plugin /home/pi/uwsgi/python27_plugin.so \
+ --enable-threads \
+ --workers 4 \
  --plugin /home/pi/uwsgi/http_plugin.so \
  --http :8080 \
  -H /home/pi/tilestache/venv \
