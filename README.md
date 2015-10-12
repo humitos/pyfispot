@@ -25,7 +25,7 @@ definitive guide.
 
 # Requirements
 
-* [RaspberryPi](http://raspberrypi.org/)
+* [RaspberryPi](https://github.com/humitos/pyfispot/blob/master/docs/raspberrypi.md)
 * Dongle WiFi
   (e.g. [TL-WN722G](http://www.tp-link.com/en/products/details/cat-11_TL-WN722N.html)
   or
