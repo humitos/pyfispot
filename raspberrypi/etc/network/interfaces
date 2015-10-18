@@ -16,6 +16,18 @@ iface wlan0 inet static
   post-up /etc/init.d/hostapd start
   post-down /etc/init.d/hostapd stop
 
+
+auto wlan1
+allow-hotplugin wlan1
+iface wlan1 inet manual
+  # wpa-debug-level 3
+  wpa-driver nl80211
+  wpa-roam-default-iface wparoamiface
+  wpa-roam /etc/wpa_supplicant/wpa_roam.conf
+
+iface wparoamiface inet dhcp
+
+
 #auto wlan0
 #allow-hotplug wlan0
 #iface wlan0 inet manual
