@@ -3,7 +3,6 @@
 # WARNING: Need to be ran with "sudo".
 
 import os
-import sys
 import shutil
 
 
@@ -17,13 +16,17 @@ for directory in ('home', 'etc'):
             relative_path = os.path.abspath(os.path.join(root, f))
             root_path = os.path.join('/', root, f)
             print('Copying: {} to {}'.format(relative_path, root_path))
-            answer = raw_input('Continue [Y/n]')
+            answer = raw_input('Copy this file? [Y/n]')
             if answer != 'Y':
-                print('Exiting...')
-                sys.exit(1)
+                print('Skipping...')
+                continue
             try:
                 shutil.move(root_path, root_path + '.bak')
             except IOError as e:
                 print('There was an error backuping this file')
                 print('Exception: {}'.format(e))
             shutil.copy(relative_path, root_path)
+
+# Some specific-configuration commands
+os.system('chown root:root /etc/wpa_supplicant/wpa_roam.conf')
+os.system('chmod 600 /etc/wpa_supplicant/wpa_roam.conf')
