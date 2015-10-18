@@ -26,7 +26,7 @@ $IPTABLES -A logaccept -j ACCEPT
 
 # Create internet chain.
 # This is used to authenticate users who have already signed up.
-$IPTABLES -N internet -t mangle
+$IPTABLES -t mangle -N internet
 
 # First send all traffic via newly created internet chain.
 # At the prerouting NAT stage this will DNAT them to the local
