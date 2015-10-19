@@ -62,7 +62,6 @@ $IPTABLES -t filter -A FORWARD -p icmp --icmp-type echo-request -j ACCEPT
 # Now that we've got to the forward filter, drop all packets
 # marked 99 - these are unknown users. We can't drop them earlier
 # as there's no filter table.
-$IPTABLES -i $IFACE_HOSTAPD -t filter -A INPUT -m mark --mark 99 -j DROP
 $IPTABLES -i $IFACE_HOSTAPD -t filter -A FORWARD -m mark --mark 99 -j DROP
 
 # Allow my own PC to connect directly to the RaspberryPi.
@@ -88,6 +87,8 @@ $IPTABLES -t filter -A INPUT -p udp --sport 53 -j ACCEPT  # DNS (incoming)
 $IPTABLES -t filter -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
 $IPTABLES -t filter -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
 
+# Drop anything else
+$IPTABLES -i $IFACE_HOSTAPD -t filter -A INPUT -m mark --mark 99 -j DROP
 
 # Enable Internet connection sharing
 echo "1" > /proc/sys/net/ipv4/ip_forward
