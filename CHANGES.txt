@@ -1,0 +1,10 @@
+New in master
+=============
+
+Features
+--------
+
+* Serve http://docs.python.org.ar/
+* Automatically connect to known WiFi networks (Issue #13)
+* Initial design for Captive Portal homepage (Issue #5)
+* Use variables on "run_iptables.sh" script (Issue #1)

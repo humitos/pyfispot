@@ -57,10 +57,11 @@ there are some other services offered by the RaspberryPi server.
   * elblogdehumitos.com.ar
   * argentinaenpython.com.ar
   * tutorial.djangogirls.org
+  * tutorial.python.org.ar
 * XMPP server
   * [prosody](http://prosody.im/)
   * [Candy](http://candy-chat.github.io/candy/)
-* devpi-server
+* [devpi-server](https://github.com/humitos/pyfispot/blob/master/docs/devpi-server.md)
 
 # References
 
