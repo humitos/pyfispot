@@ -72,5 +72,15 @@ server {
         include uwsgi_params;
         uwsgi_pass 127.0.0.1:3031;
     }
+
+    # Configuration for Captive Portal on Anroid devices.
+    # Most of them check for http://some.google.domain/generate_204
+    location /generate_204 {
+        return 302 http://portal.redlibre/;
+    }
+
+    if ($http_user_agent ~ "^CaptiveNetworkSupport(.*)$"){
+        return 302 http://portal.redlibre/;
+    }
 }
 
