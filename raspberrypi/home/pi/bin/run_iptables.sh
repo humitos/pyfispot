@@ -26,19 +26,19 @@ $IPTABLES -A logaccept -j ACCEPT
 
 # Create internet chain.
 # This is used to authenticate users who have already signed up.
-$IPTABLES -N internet -t mangle
+$IPTABLES -t mangle -N internet
 
 # First send all traffic via newly created internet chain.
 # At the prerouting NAT stage this will DNAT them to the local
 # webserver for them to signup if they aren't authorised.
 # Packets for unauthorised users are marked for dropping later.
-$IPTABLES -t mangle -A PREROUTING -j internet
+$IPTABLES -i $IFACE_HOSTAPD -t mangle -A PREROUTING -j internet
 
 # Mark the packet as 99.
-$IPTABLES -t mangle -A internet -j MARK --set-mark 99
+$IPTABLES -i $IFACE_HOSTAPD -t mangle -A internet -j MARK --set-mark 99
 
 # Redirects web requests from Unauthorised users to logon Web Page.
-$IPTABLES -t nat -A PREROUTING -m mark --mark 99 -p tcp --dport 80 -j DNAT --to-destination 192.168.10.1
+$IPTABLES -i $IFACE_HOSTAPD -t nat -A PREROUTING -m mark --mark 99 -p tcp --dport 80 -j DNAT --to-destination 192.168.10.1
 # TODO: redirect 443 also to our nginx with https and another redirect
 
 # Allow all the port we want to provide to the users
@@ -62,7 +62,7 @@ $IPTABLES -t filter -A FORWARD -p icmp --icmp-type echo-request -j ACCEPT
 # Now that we've got to the forward filter, drop all packets
 # marked 99 - these are unknown users. We can't drop them earlier
 # as there's no filter table.
-$IPTABLES -t filter -A FORWARD -i $IFACE_HOSTAPD -m mark --mark 99 -j DROP
+$IPTABLES -i $IFACE_HOSTAPD -t filter -A FORWARD -m mark --mark 99 -j DROP
 
 # Allow my own PC to connect directly to the RaspberryPi.
 $IPTABLES -t filter -A INPUT -m mac --mac-source 00:e0:4c:53:44:58 -j ACCEPT  # eth0 (usb adaptor)
@@ -87,11 +87,11 @@ $IPTABLES -t filter -A INPUT -p udp --sport 53 -j ACCEPT  # DNS (incoming)
 $IPTABLES -t filter -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
 $IPTABLES -t filter -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
 
-$IPTABLES -t filter -A INPUT -m mark --mark 99 -j DROP
+# Drop anything else
+$IPTABLES -i $IFACE_HOSTAPD -t filter -A INPUT -m mark --mark 99 -j DROP
 
 # Enable Internet connection sharing
 echo "1" > /proc/sys/net/ipv4/ip_forward
-$IPTABLES -t filter -A FORWARD -i $IFACE_INTERNET -o $IFACE_HOSTAPD -m state --state ESTABLISHED,RELATED -j ACCEPT
-$IPTABLES -t filter -A FORWARD -i $IFACE_HOSTAPD -o $IFACE_INTERNET -j ACCEPT
+$IPTABLES -t filter -A FORWARD -i $IFACE_INTERNET -o $IFACE_HOSTAPD  -m state --state ESTABLISHED,RELATED -j ACCEPT
+$IPTABLES -t filter -A FORWARD -i $IFACE_HOSTAPD  -o $IFACE_INTERNET -j ACCEPT
 $IPTABLES -t nat -A POSTROUTING -o $IFACE_INTERNET -j MASQUERADE
-
