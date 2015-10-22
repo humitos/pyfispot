@@ -7,6 +7,7 @@
 
 IFACE_INTERNET=$1
 IFACE_HOSTAPD=$2
+IFACE_HOSTAPD_IP=`ifconfig $IFACE_HOSTAPD | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
 
 IPTABLES=/sbin/iptables
 
@@ -38,7 +39,7 @@ $IPTABLES -i $IFACE_HOSTAPD -t mangle -A PREROUTING -j internet
 $IPTABLES -i $IFACE_HOSTAPD -t mangle -A internet -j MARK --set-mark 99
 
 # Redirects web requests from Unauthorised users to logon Web Page.
-$IPTABLES -i $IFACE_HOSTAPD -t nat -A PREROUTING -m mark --mark 99 -p tcp --dport 80 -j DNAT --to-destination 192.168.10.1
+$IPTABLES -i $IFACE_HOSTAPD -t nat -A PREROUTING -m mark --mark 99 -p tcp --dport 80 -j DNAT --to-destination $IFACE_HOSTAPD_IP
 # TODO: redirect 443 also to our nginx with https and another redirect
 
 # Allow all the port we want to provide to the users
@@ -53,7 +54,7 @@ do {
 }; done
 
 # Accept all FORWARDed traffic after the user logs in
-# $IPTABLES -t filter -A FORWARD -p tcp -m mark ! --mark 99 -j ACCEPT
+# $IPTABLES -i $IFACE_HOSTAPD -t filter -A FORWARD -p tcp -m mark ! --mark 99 -j ACCEPT
 
 # Allow ICMP echo (input/output).
 $IPTABLES -t filter -A FORWARD -p icmp --icmp-type echo-reply -j ACCEPT
