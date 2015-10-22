@@ -52,3 +52,26 @@ cd pyfispot
 git reset --hard origin/master
 git pull
 ```
+
+
+### Restart WPA supplicant configuration
+
+```
+sudo ifdown --force wlan1
+sudo ifconfig wlan1 down
+sudo ifup wlan1
+```
+
+### Downloda an entire website
+
+This command is used to download http://tutorial.djangogirls.org/e[s|n]:
+
+```
+cd ~/apps
+wget --continue --recursive \
+     --no-clobber --page-requisites \
+	 --html-extension --convert-links \
+	 --restrict-file-names=windows \
+	 --no-parent \
+	 http://tutorial.djangogirls.org/en/index.html
+```
