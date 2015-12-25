@@ -1,0 +1,1 @@
+../../../../raspberrypi/home/pi/bin/connect_wpa.sh
