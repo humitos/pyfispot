@@ -12,14 +12,14 @@ IFACE_HOSTAPD_IP=`ifconfig $IFACE_HOSTAPD | grep -Eo 'inet (addr:)?([0-9]*\.){3}
 IPTABLES=/sbin/iptables
 
 # Used to DROP n' log packages in /var/log/messages
-$IPTABLES -N logdrop
-$IPTABLES -A logdrop -m limit --limit 5/m --limit-burst 10 -j LOG
-$IPTABLES -A logdrop -j DROP
+# $IPTABLES -N logdrop
+# $IPTABLES -A logdrop -m limit --limit 5/m --limit-burst 10 -j LOG
+# $IPTABLES -A logdrop -j DROP
 
 # Used to ACCEPT n' log packages in /var/log/messages
-$IPTABLES -N logaccept
-$IPTABLES -A logaccept -m limit --limit 5/m --limit-burst 10 -j LOG
-$IPTABLES -A logaccept -j ACCEPT
+# $IPTABLES -N logaccept
+# $IPTABLES -A logaccept -m limit --limit 5/m --limit-burst 10 -j LOG
+# $IPTABLES -A logaccept -j ACCEPT
 
 # Useful to log the traffic and be able to debug
 # $IPTABLES -t raw -A PREROUTING -p tcp --dport 80 -j TRACE
@@ -66,6 +66,7 @@ $IPTABLES -t filter -A FORWARD -p icmp --icmp-type echo-request -j ACCEPT
 $IPTABLES -i $IFACE_HOSTAPD -t filter -A FORWARD -m mark --mark 99 -j DROP
 
 # Allow my own PC to connect directly to the RaspberryPi.
+# Just for DEBUGGING purpose only.
 $IPTABLES -t filter -A INPUT -m mac --mac-source 00:e0:4c:53:44:58 -j ACCEPT  # eth0 (usb adaptor)
 $IPTABLES -t filter -A INPUT -m mac --mac-source c4:85:08:b5:a1:62 -j ACCEPT  # wlan0 (wifi adaptor)
 
