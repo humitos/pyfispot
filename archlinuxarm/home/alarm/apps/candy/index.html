@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Chat - Red Libre</title>
+	<link rel="shortcut icon" href="../res/img/favicon.png" type="image/gif" />
+	<link rel="stylesheet" type="text/css" href="../res/default.css" />
+
+	<script type="text/javascript" src="../jquery.min.js"></script>
+	<script type="text/javascript" src="../libs.min.js"></script>
+	<script type="text/javascript" src="../candy.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			Candy.init('http-bind/', {
+				core: {
+					// only set this to true if developing / debugging errors
+					debug: true,
+					// autojoin is a *required* parameter if you don't have a plugin (e.g. roomPanel) for it
+					//   true
+					//     -> fetch info from server (NOTE: does only work with openfire server)
+					//   ['test@conference.example.com']
+					//     -> array of rooms to join after connecting
+					autojoin: ['RedLibre@conference.chat.redlibre']
+				},
+				view: { assets: '../res/' }
+			});
+
+			Candy.Core.connect('chat.redlibre');
+		});
+	</script>
+</head>
+<body>
+	<div id="candy"></div>
+</body>
+</html>
