@@ -1,0 +1,11 @@
+Description='hostapd interface'
+Interface=wlan0
+Connection=ethernet
+IP=static
+Address='192.168.10.1/24'
+SkipNoCarrier=yes
+# ExecUpPost=/home/alarm/bin/run_iptables.sh eth0 wlan0
+# ExecUpPost=/home/alarm/bin/run_iptables.sh wlan1 wlan0
+# ESSID='Red Libre'
+# DHCPClient=dhclient
+# DHCPReleaseOnStop=yes

@@ -1,0 +1,6 @@
+Description='Configure the interface to be able to connect to TP-Link Router'
+Interface=eth0
+Connection=ethernet
+IP=static
+Address='192.168.0.42/24'
+DNS='127.0.0.1'

@@ -1,0 +1,13 @@
+Description='WPA2 Encrypted Wireless Network'
+Interface=wlan1
+Connection=wireless
+
+Security=wpa
+IP=dhcp
+
+ESSID='WLAN_9712'
+Key='<your-password-here>'
+DNS='127.0.0.1'
+
+# Set a priority for automatic profile selection
+# Priority=10

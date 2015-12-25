@@ -4,8 +4,16 @@
 
 # Installation
 
+## Raspbian
+
 ```
 sudo apt-get install hostapd
+```
+
+## Arch Linux ARM
+
+```
+sudo pacman -S hostapd
 ```
 
 Use the config file on this repository to make it work and change the
@@ -17,6 +25,8 @@ options as you need. You will probably want to change:
 
 ## Files needed
 
+### Raspbian
+
 * [/etc/default/hostapd](https://github.com/humitos/pyfispot/blob/master/raspberrypi/etc/default/hostapd)
 * [/etc/hostapd/hostapd.conf](https://github.com/humitos/pyfispot/blob/master/raspberrypi/etc/hostapd/hostapd.conf)
 
@@ -26,4 +36,13 @@ up. To do so, you will add this line to the
 
 ```
 post-up /etc/init.d/hostapd start
+```
+
+### Arch Linux ARM
+
+* [/etc/hostapd/hostapd.conf](https://github.com/humitos/pyfispot/blob/master/archarmlinux/etc/hostapd/hostapd.conf)
+* [/etc/netctl/wlan0](https://github.com/humitos/pyfispot/blob/master/archarmlinux/etc/netctl/wlan0)
+
+```
+sudo systemctl enable hostapd
 ```

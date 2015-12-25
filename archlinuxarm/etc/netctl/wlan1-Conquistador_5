@@ -1,0 +1,15 @@
+Description='WPA2 Encrypted Wireless Network'
+Interface=wlan1
+Connection=wireless
+
+Security=wpa
+IP=dhcp
+DHCPClient=dhclient
+Hostname=raspberrypi
+
+ESSID='Conquistador 5'
+Key='<your-password-here>'
+DNS='127.0.0.1'
+
+# Set a priority for automatic profile selection
+# Priority=10
