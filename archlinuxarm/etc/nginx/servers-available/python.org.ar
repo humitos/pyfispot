@@ -1,0 +1,23 @@
+server {
+    server_name     tutorial.python.org.ar;
+    return 301      http://docs.python.org.ar;
+}
+
+server {
+    server_name     docs.python.org.ar;
+
+    access_log      /var/log/nginx/python.org.ar-access.log;
+    error_log       /var/log/nginx/python.org.ar-error.log;
+
+
+    expires 30d;
+
+    location / {
+        return 301      http://docs.python.org.ar/tutorial;
+    }
+
+    location /tutorial {
+        root /home/alarm/apps/tutorial.python.org.ar/;
+        index index.html;
+    }
+}

@@ -1,0 +1,31 @@
+server {
+    server_name     www.argentinaenpython.com.ar argentinaenpython.com.ar;
+
+    access_log      /var/log/nginx/argentinaenpython.com.ar-access.log;
+    error_log       /var/log/nginx/argentinaenpython.com.ar-error.log;
+
+    expires 30d;
+
+    location /assets {
+        root /home/alarm/apps/argentinaenpython.com.ar/;
+    }
+
+    location / {
+        root /home/alarm/apps/argentinaenpython.com.ar/;
+        error_page 404 = @english_version;
+        index index.html;
+    }
+
+    location @english_version {
+        # We need to put all the translated pages with images here
+
+        rewrite ^/en/our-zen/(.*) /nuestro-zen/$1 last;
+        rewrite ^/en/donations/payment-methods/(.*) /donaciones/medios/$1 last;
+        rewrite ^/en/donations/collaborators/(.*) /donaciones/colaboradores/$1 last;
+        rewrite ^/en/donations/(.*) /donaciones/$1 last;
+        rewrite ^/en/events/(.*) /eventos/$1 last;
+        rewrite ^/en/contact/(.*) /contacto/$1 last;
+        rewrite ^/en/the-team/(.*) /el-equipo/$1 last;
+        rewrite ^/en(/.*) $1 last;
+    }
+}

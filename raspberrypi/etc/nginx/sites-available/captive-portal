@@ -4,7 +4,6 @@ server {
                         connectivitycheck.android.com;     # Android 5.x
                         # gstatic.com                        # Samsung S5 Android 5.0
                         # googleapis.com;                    # Samsung S5 Android 5.0
-                        
 
     access_log      /var/log/nginx/captive-portal-access.log;
     error_log       /var/log/nginx/captive-portal-error.log;

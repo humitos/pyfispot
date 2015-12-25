@@ -14,21 +14,17 @@ server {
 
     expires 30d;
 
-    # This is used to redirect all the traffic for Piwik to the
-    # original server. We are not running Piwik on the RaspberryPi
+    location /assets {
+        root /home/alarm/apps/elblogdehumitos.com.ar;
+    }
+
     location /piwik {
         proxy_set_header Host $host;
-        proxy_set_header X-outside-url $scheme://$host:$server_port;
-        proxy_set_header X-Real-IP $remote_addr;
         proxy_pass http://174.136.4.208:80/piwik;
     }
 
-    location /assets {
-        root /home/pi/apps/elblogdehumitos.com.ar;
-    }
-
     location / {
-        root /home/pi/apps/elblogdehumitos.com.ar;
+        root /home/alarm/apps/elblogdehumitos.com.ar;
         index index.html;
     }
 }

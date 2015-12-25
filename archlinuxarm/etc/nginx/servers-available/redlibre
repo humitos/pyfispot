@@ -1,0 +1,145 @@
+server {
+    server_name     redlibre;
+
+    access_log      /var/log/nginx/redlibre-access.log;
+    error_log       /var/log/nginx/redlibre-error.log;
+
+
+    location / {
+        root /usr/share/nginx/www;
+	index index.html index.html;
+    }
+}
+
+
+
+
+server {
+    server_name    deluge.redlibre;
+
+    access_log      /var/log/nginx/deluge.redlibre-access.log;
+    error_log       /var/log/nginx/deluge.redlibre-error.log;
+
+    location / {
+          proxy_pass    http://127.0.0.1:8112;
+    }
+}
+
+server {
+    server_name    kodi.redlibre;
+
+    # Capture everything not with a trailing slash and add a
+    # trailing slash to it.
+    # rewrite ^(.*[^/])$ $1/ permanent;
+
+
+    location / {
+          return http://kodi.redlibre/arch/;
+    }
+
+    location /arch {
+          proxy_pass    http://127.0.0.1:8080/addons/webinterface.arch/;
+    }
+
+    location /chorus {
+          proxy_pass    http://127.0.0.1:8080/addons/webinterface.chorus/;
+    }
+
+    # images are shared by all the web interfaces
+    location /image {
+          proxy_pass    http://127.0.0.1:8080;
+    }
+
+}
+
+server {
+    server_name    www.cdpedia.redlibre cdpedia.redlibre;
+
+    access_log      /var/log/nginx/cdpedia.redlibre-access.log;
+    error_log       /var/log/nginx/cdpedia.redlibre-error.log;
+
+    location / {
+          proxy_pass    http://127.0.0.1:8888;
+    }
+}
+
+server {
+
+    server_name    chat.redlibre;
+    
+    access_log      /var/log/nginx/chat.redlibre-access.log;
+    error_log       /var/log/nginx/chat.redlibre-error.log;
+
+    location / {
+        root /home/alarm/apps/candy;
+        index index.html index.htm;
+    }
+
+    location /http-bind {
+        proxy_pass  http://127.0.0.1:5280/http-bind;
+        proxy_set_header Host $host;
+        proxy_buffering off;
+        tcp_nodelay on;
+    }
+}
+
+server {
+    listen          80 default_server;
+    server_name     www.portal.redlibre portal.redlibre;
+
+    access_log      /var/log/nginx/pyfispot-access.log;
+    error_log       /var/log/nginx/pyfispot-error.log;
+
+    # We receive a lot of POST requests that are for [someone] and we 
+    # don't want to process all that stuff. This is sent by Smartphones
+    # in particular. We return 405.
+    # https://github.com/humitos/pyfispot/issues/20
+
+    # http://agentzh.blogspot.pe/2011/03/how-nginx-location-if-works.html
+    if ($request_method = POST) {
+        set $post_another_host POST;
+    }
+
+    if ($host != portal.redlibre) {
+        set $post_another_host "${post_another_host}_ANOTHER_HOST";
+    }
+
+    if ($post_another_host = POST_ANOTHER_HOST) {
+        return 405;  # Method Not Allowed
+    }
+
+    location / { try_files $uri @pyfispot; }
+
+    location /static {
+        root /home/alarm/apps/pyfispot;
+    }
+
+    location @pyfispot {
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:3031;
+    }
+
+    # Configuration for Captive Portal on Anroid devices.
+    # Most of them check for http://some.google.domain/generate_204
+    location /generate_204 {
+        return 302 http://portal.redlibre/;
+    }
+
+    if ($http_user_agent ~ "^CaptiveNetworkSupport(.*)$"){
+        return 302 http://portal.redlibre/;
+    }
+}
+
+
+server {
+    server_name     mapas.redlibre;
+
+    access_log      /var/log/nginx/mapas.redlibre-access.log;
+    error_log       /var/log/nginx/mapas.redlibre-error.log;
+
+    location / {
+        root /home/alarm/apps/maps;
+        autoindex on;
+    }
+}
+
