@@ -63,6 +63,15 @@ there are some other services offered by the RaspberryPi server.
   * [Candy](http://candy-chat.github.io/candy/)
 * [devpi-server](https://github.com/humitos/pyfispot/blob/master/docs/devpi-server.md)
 
+# Notes
+
+* There is no official release yet, although the code is working properly (I should have bugs -I'm sure).
+* It was tested in a
+  [Django Girls Workshop](http://argentinaenpython.com.ar/galeria/django-girls-mendoza/)
+  at PyCon Argentina with more that 50 users. Yes, it worked, but the
+  wireless connection was really congested. On the other hand, the
+  RaspberryPi with ArchLinux ARM worked without any problem.
+
 # References
 
 * http://netfilter.org/documentation/HOWTO//packet-filtering-HOWTO.txt

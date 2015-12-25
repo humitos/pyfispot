@@ -4,6 +4,13 @@ New in master
 Features
 --------
 
+* Prosody + Candy (XMPP chat over http) works properly
+* Added config for more USB power
+* Scripts to download OSM maps for OsmAnd and Maps.Me
+* Mode 'g' for hostapd
+* We switched to ArchLinux ARM (+ documentation)
+* "Sign in..." notification works on Android 6.0
+* Serve http://tutorial.djangogirls.org/
 * Serve http://docs.python.org.ar/
 * Automatically connect to known WiFi networks (Issue #13)
 * Initial design for Captive Portal homepage (Issue #5)
