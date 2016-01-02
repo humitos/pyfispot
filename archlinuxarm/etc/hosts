@@ -1,0 +1,14 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+#<ip-address>   <hostname.domain.org>   <hostname>
+127.0.0.1       localhost.localdomain   localhost
+::1             localhost.localdomain   localhost
+
+# 107.21.251.146  tutorial.djangogirls.org
+
+# End of file
+
+192.168.10.1	tutorial.djangogirls.org
+192.168.10.1	docs.python.org.ar

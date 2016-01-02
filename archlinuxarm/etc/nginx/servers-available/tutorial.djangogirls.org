@@ -1,0 +1,15 @@
+server {
+    server_name     tutorial.djangogirls.org;
+
+    access_log      /var/log/nginx/tutorial.djangogirls.org-access.log;
+    error_log       /var/log/nginx/tutorial.djangogirls.org-error.log;
+
+    location / {
+        rewrite ^/ /es last;
+    }
+
+    location /es {
+        root /home/alarm/apps/tutorial.djangogirls.org/;
+        index index.html;
+    }
+}
