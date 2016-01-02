@@ -12,4 +12,9 @@ server {
         root /home/alarm/apps/tutorial.djangogirls.org/;
         index index.html;
     }
+
+    location /en {
+        root /home/alarm/apps/tutorial.djangogirls.org/;
+        index index.html;
+    }
 }
