@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title>Mapa de OpenStreetMap</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/leaflet.css" />
     <script src="js/leaflet.js"></script>
@@ -14,7 +15,7 @@
     
     <script type="text/javascript">
       var map = L.map('map').setView([-15.8419, -70.0177], 14);
-      L.tileLayer('http://192.168.10.1:8080/{id}/{z}/{x}/{y}.png', {
+      L.tileLayer('http://mapa.redlibre:3032/{id}/{z}/{x}/{y}.png', {
 	  attribution: 'humitos',
 	  id: 'openstreetmap'
       }).addTo(map);

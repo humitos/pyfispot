@@ -143,3 +143,14 @@ server {
     }
 }
 
+server {
+    server_name     mapa.redlibre;
+
+    access_log      /var/log/nginx/mapa.redlibre-access.log;
+    error_log       /var/log/nginx/mapa.redlibre-error.log;
+
+    location / {
+        root /home/alarm/apps/tilestache/map;
+    }
+}
+
