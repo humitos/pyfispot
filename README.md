@@ -53,14 +53,12 @@ there are some other services offered by the RaspberryPi server.
 
 * [TileStache](https://github.com/humitos/pyfispot/blob/master/docs/tilestache.md) ([OpenStreetMap](http://osm.org/) Tile Server)
   * memcache (optional)
-* Offline Websites
+* [Offline Websites](https://github.com/humitos/pyfispot/blob/master/utils/update_tutorials.sh)
   * elblogdehumitos.com.ar
   * argentinaenpython.com.ar
   * tutorial.djangogirls.org
   * tutorial.python.org.ar
-* XMPP server
-  * [prosody](http://prosody.im/)
-  * [Candy](http://candy-chat.github.io/candy/)
+* [Chat with Prosody + Candy](https://github.com/humitos/pyfispot/blob/master/docs/prosody.md)
 * [devpi-server](https://github.com/humitos/pyfispot/blob/master/docs/devpi-server.md)
 
 # Notes
