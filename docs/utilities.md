@@ -62,16 +62,25 @@ sudo ifconfig wlan1 down
 sudo ifup wlan1
 ```
 
-### Downloda an entire website
+### Connect to our TP-LINK through the RaspberryPi
 
-This command is used to download http://tutorial.djangogirls.org/e[s|n]:
+
+* Run this command from the Notebook:
+```
+ssh -C -L 8888:192.168.0.254:80 alarm@192.168.10.1
+sudo ifconfig eth0 192.168.0.42
+```
 
 ```
-cd ~/apps
-wget --continue --recursive \
-     --no-clobber --page-requisites \
-	 --html-extension --convert-links \
-	 --restrict-file-names=windows \
-	 --no-parent \
-	 http://tutorial.djangogirls.org/en/index.html
+sudo netctl stop eth0-dhcp
+sudo netctl stop eth0-tplink
+```
+
+* Open the browser on the Notebook and go to: http://localhost:8888/
+
+* You will see the admin site: PharOS
+
+* When you have finished your configurations:
+```
+sudo netctl restart eth0
 ```
