@@ -1,0 +1,9 @@
+[Unit]
+Description=devpi: PyPI server and packaging/testing/release tool
+AssertPathExists=/home/alarm/.virtualenvs/devpi-server
+
+[Service]
+User=alarm
+Type=forking
+ExecStart=/home/alarm/.virtualenvs/devpi-server/bin/devpi-server --start --host localhost
+Nice=5

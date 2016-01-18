@@ -5,21 +5,27 @@
 # Installation
 
 ```
-mkvirtualenv -p python3.2 devpi
+source virtualenvwrapper.sh
+mkvirtualenv devpi
 pip install devpi-server
 ```
 
 ## Files needed
 
-* [/etc/nginx/sites-available/devpi](https://github.com/humitos/pyfispot/blob/master/raspberrypi/etc/nginx/sites-available/devpi)
-
+* [/etc/nginx/servers-available/devpi](https://github.com/humitos/pyfispot/blob/master/archlinuxarm/etc/nginx/servers-available/devpi)
+* [/etc/systemd/system/devpi.service](https://github.com/humitos/pyfispot/blob/master/archlinuxarm/etc/systemd/system/devpi.service)
 
 ## Running the server
 
+Start the server and check it's working
 ```
-devpi-server --port 4040 --start
+sudo systemctl start devpi
 ```
 
-*NOTE:* this software consumes a lot of CPU and the RaspberryPi is not
-able to handle it. So, I recommend to not use it if you are running
-this config in a RaspberryPi.
+If everything go ok, you can enable it at boot:
+```
+sudo systemctl enable devpi
+```
+
+NOTE: devpi only works properly in a RaspberryPi 2, because it's too
+CPU consuming.
