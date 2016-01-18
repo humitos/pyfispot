@@ -43,7 +43,7 @@ This package is useful to install package from AUR.
 * https://aur.archlinux.org/packages/aurvote (dependency)
 
 
-* Install `aurvote`
+Install `aurvote`
 ```
 curl -O --remote-header-name https://aur.archlinux.org/cgit/aur.git/snapshot/aurvote.tar.gz
 tar xvfz aurvote.tar.gz
@@ -51,7 +51,7 @@ cd aurvote
 makepkg -sri
 ```
 
-* Install `package-query`
+Install `package-query`
 ```
 curl -O --remote-header-name https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz
 tar xvfz package-query.tar.gz
@@ -59,7 +59,7 @@ cd package-query
 makepkg -sri
 ```
 
-* Install `yaourt`
+Install `yaourt`
 ```
 curl -O --remote-header-name https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz
 tar xvfz yaourt.tar.gz

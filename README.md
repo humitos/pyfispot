@@ -27,7 +27,7 @@ definitive guide.
 
 # Requirements
 
-* [RaspberryPi](https://github.com/humitos/pyfispot/blob/master/docs/raspberrypi.md)
+* [RaspberryPi](https://github.com/humitos/pyfispot/blob/master/docs/archlinuxarm.md)
 * Dongle WiFi
   (e.g. [TL-WN722G](http://www.tp-link.com/en/products/details/cat-11_TL-WN722N.html)
   or
