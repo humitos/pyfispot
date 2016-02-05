@@ -6,3 +6,5 @@ iptables -I internet 1 -t mangle -m mac --mac-source 00:e0:4c:53:44:58 -j RETURN
 iptables -I internet 1 -t mangle -m mac --mac-source c4:85:08:b5:a1:62 -j RETURN
 # Samsung wireless card
 iptables -I internet 1 -t mangle -m mac --mac-source 50:b7:c3:51:11:c7 -j RETURN
+# Samsung Mobile Phone
+iptables -I internet 1 -t mangle -m mac --mac-source 60:8f:5c:13:7b:f3 -j RETURN
