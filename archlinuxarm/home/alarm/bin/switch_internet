@@ -1,0 +1,36 @@
+#/bin/bash
+
+# IP_GATEWAY=`route -n | awk '{print $2}' | grep 19`
+# IP_GATEWAY=190.154.240.1
+# IP_GATEWAY_TVCABLE=190.154.240.1  # My internet connection
+# IP_GATEWAY_ETAPA=192.168.1.1  # Neighboor internet connection
+WAIT_SECONDS=10
+TVCABLE_ENABLED=`ifconfig | grep eth0 | wc -l`  # My internet goes in eth0
+ETAPA_ENABLED=`ifconfig | grep wlan1 | wc -l`  # Neighboor goes in wlan1
+
+ping -c 1 google.com -W 5 > /dev/null
+PING_STATUS=$?  # 0: success
+if [ $PING_STATUS -ne 0 ]; then
+  logger "Ping to google.com failed. Changing default gateway..."
+  echo "Ping to google.com failed. Changing default gateway..."
+  # ip route del default
+  if [ $TVCABLE_ENABLED -eq 1 ]; then
+    # ip route add default via $IP_GATEWAY_ETAPA
+    ifconfig eth0 down
+    systemctl start netctl-auto@wlan1
+    sleep $WAIT_SECONDS
+    /home/alarm/bin/reset_iptables.sh
+    /home/alarm/bin/go_internet.sh wlan1 wlan0
+    logger "Etapa gateway configured.";
+  fi
+  if [ $ETAPA_ENABLED -eq 1 ]; then
+    # ip route add default via $IP_GATEWAY_TVCABLE
+    systemctl stop netctl-auto@wlan1
+    ifconfig eth0 up
+    # dhclient eth0
+    sleep $WAIT_SECONDS
+    /home/alarm/bin/reset_iptables.sh
+    /home/alarm/bin/go_internet.sh eth0 wlan0
+    logger "TvCable gateway configured.";
+  fi
+fi
