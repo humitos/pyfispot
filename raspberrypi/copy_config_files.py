@@ -5,6 +5,11 @@
 import os
 import shutil
 
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
+
 
 for directory in ('home', 'etc'):
     for root, dirnames, filenames in os.walk(directory):
